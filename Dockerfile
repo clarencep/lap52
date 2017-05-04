@@ -28,6 +28,7 @@ RUN cd /tmp/rpms \
     && rpm -ivh php-mbstring-5.2.17*.rpm \
     && rpm -ivh php-xml-5.2.17*.rpm \
     && rpm -ivh php-pdo-5.2.17*.rpm \
+    && useradd mockbuild \
     && rpm -ivh mysql50-5.0.96-2.ius.centos5.src.rpm \
     && rpm -ivh php-mysql-5.2.17*.rpm \
     && php -v
