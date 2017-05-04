@@ -12,11 +12,11 @@ RUN yum install -y gcc make libXpm.so.4 libt1.so.5 autoconf automake gd
 RUN yum install -y openssl openssl-devel readline readline-devel 
 RUN yum install -y openssl098e compat-readline5 compat-openldap
 RUN yum install -y libxslt
-RUN yum install -y mysql-devel
-
-COPY ./rpms /tmp/rpms
+# RUN yum install -y mysql-devel
 
 RUN echo 'exclude=php*' >> /etc/yum.conf
+
+COPY ./rpms /tmp/rpms
 
 RUN cd /tmp/rpms \
     && rpm -ivh php-common-5.2.17*.rpm \
@@ -29,7 +29,11 @@ RUN cd /tmp/rpms \
     && rpm -ivh php-xml-5.2.17*.rpm \
     && rpm -ivh php-pdo-5.2.17*.rpm \
     && useradd mockbuild \
-    && rpm -ivh mysql50-5.0.96-2.ius.centos5.src.rpm \
+    && rpm -ivh MySQL-shared-5.0.95-1.glibc23.x86_64.rpm \
+#    && rpm -ivh MySQL-shared-compat-5.0.95-1.glibc23.x86_64.rpm \
+#    && rpm -ivh MySQL-server-5.0.95-1.glibc23.x86_64.rpm \
+#    && rpm -ivh MySQL-client-5.0.95-1.glibc23.x86_64.rpm \
+#    && rpm -ivh MySQL-devel-5.0.95-1.glibc23.x86_64.rpm \
     && rpm -ivh php-mysql-5.2.17*.rpm \
     && php -v
 
