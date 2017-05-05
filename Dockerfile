@@ -28,6 +28,9 @@ RUN yum install -y httpd \
     && yum clean all \
     && find /var/log -type f -print0 | xargs -0 rm -rf /tmp/*
     
+RUN sed 's|logs/access_log|/dev/stdout|' -i.bak /etc/httpd/conf/httpd.conf \
+    && sed 's|logs/error_log|/dev/stderr|' -i.bak /etc/httpd/conf/httpd.conf
+
 CMD [ "/usr/sbin/httpd", "-DFOREGROUND" ]
 
 EXPOSE 80
