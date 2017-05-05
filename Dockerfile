@@ -24,7 +24,7 @@ RUN yum install -y httpd \
     && rpm -ivh MySQL-shared-5.0.95-1.glibc23.x86_64.rpm \
     && rpm -ivh php-mysql-5.2.17*.rpm \
     && php -v \
-    && yum remove -y gcc make autoconf automake \
+    && yum remove -y gcc autoconf automake \
     && yum clean all \
     && find /var/log -type f -print0 | xargs -0 rm -rf /tmp/*
     
